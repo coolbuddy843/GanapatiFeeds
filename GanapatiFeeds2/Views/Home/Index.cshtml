@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Ganapati Feeds and Fertilizers</title>
+    @Styles.Render("~/themes/css")
+    @Scripts.Render("~/Scripts")
+
+</head>
+<body>
+    <div id="carouselBlk">
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="container">
+                        <a href="/Account/Register"><img style="width:100%; height:auto" src="~/themes/images/carousel/1.jpg" alt="special offers" /></a>
+                        <div class="carousel-caption">
+                            <h4>Second Thumbnail label</h4>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <a href="/Account/Register"><img style="width:100%; height:auto" src="~/themes/images/carousel/2.jpg" alt="" /></a>
+                        <div class="carousel-caption">
+                            <h4>Second Thumbnail label</h4>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <a href="/Account/Register"><img style="width:100%; height:auto" src="~/themes/images/carousel/3.jpg" alt="" /></a>
+                        <div class="carousel-caption">
+                            <h4>Second Thumbnail label</h4>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+
+    <div id="home__row">
+
+        @foreach (var item in Model)
+        {
+
+        <div class="product">
+            <a href="@Url.Action("Details","Store",new { id = item.ItemId })">
+                <img alt="@item.Title" src="@item.ItemArtUrl" style="width: 20em; max-height: 20em; object-fit: contain; margin-bottom:5px; margin-top:30px" />
+                <br />
+                @item.Title
+            </a>
+            <br />
+            Price: € @String.Format("{0:F}", item.Price)
+            <br />
+            <button>
+                @Html.ActionLink("Add to cart", "AddToCart",
+                "ShoppingCart", new { id = item.ItemId }, "")
+            </button>
+        </div>
+
+
+
+        }
+
+
+    </div>
+
+</body>
+</html>
